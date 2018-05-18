@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {HttpResponse} from "@angular/common/http";
+
+import { Concert } from './concert';
 
 @Component({
   selector: 'app-root',
@@ -12,27 +13,24 @@ import {HttpResponse} from "@angular/common/http";
 })
 export class AppComponent implements OnInit {
 
-  concerts = [];
+  private concertsUrl = 'assets/concerts.json';
 
-  constructor (private http: Http) {}
+  concerts : Concert[];
+
+  constructor (private http: HttpClient) {}
 
   ngOnInit() {
     this.getConcerts()
       .subscribe(concerts => this.concerts);
   }
 
-  getConcerts(): Observable<any> {
-    return this.http.get('assets/concerts.json')
-      .map((response: Response) => {
-          console.log("mock data" + response.json());
-          return response.json();
-        }
-      )
+  getConcerts(): Observable<Concert[]> {
+    return this.http.get(this.concertsUrl)
       .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
+    console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
 
