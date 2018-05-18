@@ -9,13 +9,13 @@
 
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="assets/ny.jpg" alt="New York"></img>
+      <img src="assets/ny.jpg" alt="New York">
       <div class="carousel-caption">
         <h3>Featured</h3>
       </div>
     </div>
     <div class="item" *ngFor="let concert of concerts">
-      <img ng-src="assets/{{concert.featuredImage}}" alt="Something"></img>
+      <img src="{{concert.featuredImage}}" alt="Something">
       <div class="carousel-caption">
         <h3>{{concert.name}}</h3>
       </div>
