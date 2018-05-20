@@ -14,13 +14,11 @@
         <h3>Featured</h3>
       </div>
     </div>
-    <div class="item" *ngFor="let concert of concerts">
-      <ng-container *ngIf=''>
+    <div class="item" *ngFor="let concert of featured">
       <img src="./assets/{{concert.featuredImage}}" alt="Something">
       <div class="carousel-caption">
         <h3>{{concert.name}}</h3>
       </div>
-      </ng-container>
     </div>
   </div>
 
